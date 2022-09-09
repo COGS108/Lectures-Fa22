@@ -1,4 +1,4 @@
-# Lectures-Sp22
+# Lectures-Fa22
 Course materials are organized by week.
 
 |Week  | General Topic  |
