@@ -1,0 +1,37 @@
+jovyan@dsmlp-jfleischer:~/$ git config --list
+
+# this would show you what you already have config'd, if anything, but there's nothing here!
+
+# setting user.name and user.email assigns the credit/blame for your commits to you
+# now when people are viewing the editing history they can come ask you why it is that way
+# using the --global flag means this applies to every single git command for this user
+# without it you'd just be affecting the repo you are currently operating in
+
+jovyan@dsmlp-jfleischer:~/$ git config --global user.name "Jason Fleischer"
+
+jovyan@dsmlp-jfleischer:~/$ git config --global user.email "jfleischer@ucsd.edu"
+
+# setting credential.helper to store means that the NEXT git operation you do that requires
+# a password will have the username/password stored in plain text -- NOT SECURE! :)
+# but since you are using a Personal Access Token this isn't really a problem.
+# 1) PATs are revokable and they expire after a short period (I'd suggest ~2 weeks past end of quarter)
+# 2) Somone can read your PAT only if they have access to your datahub account already
+# Follow the instructions we gave (or a web tutorial) on how to generate a PAT! Then do this...
+
+jovyan@dsmlp-jfleischer:~/$ git config --global credential.helper store
+
+# now do a git operation that requires a password, such as trying to clone a private repo (e.g., project group repo)
+# the put in your github username and copy/paste the PAT when it asks for a password
+
+jovyan@dsmlp-jfleischer:~/$ git clone https://github.com/COGS108/PrivateRepo.git
+Username for 'https://github.com': jasongfleischer
+Password for 'https://jasongfleischer@github.com':
+Cloning into 'PrivateRepo'...
+remote: Enumerating objects: 70, done.
+remote: Counting objects: 100% (70/70), done.
+remote: Compressing objects: 100% (50/50), done.
+remote: Total 70 (delta 11), reused 70 (delta 11), pack-reused 0
+Unpacking objects: 100% (70/70), 18.72 MiB | 5.78 MiB/s, done.
+
+# from now until the PAT expires you will no longer need to put in a password when accessing github on this machine as this user
+# you will need to do this dance again if you use a different login or are operating on another machine
